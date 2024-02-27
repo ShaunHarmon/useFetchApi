@@ -8,15 +8,18 @@ function App() {
 
   const {data, isLoading, error, abortController} = useFetchApi<Post[]>({url: 'https://jsonplaceholder.typicode.com/posts'})
 
-  useEffect(()=>{
-    error && console.warn(error)
-    return ()=>{abortController.abort('component unmounted')}
-  },[])
+  if(error){
+    console.warn(error)
+  }
 
   return (
-    <div className="App">
-      {isLoading && <div>...loading</div>}
-      <CardList list={data}/>
+    <div className="home-container">
+      <div className='container'>
+        <div className='grid-container'>
+          {isLoading && <div>...loading</div>}
+          <CardList list={data}/>
+        </div>
+      </div>
     </div>
   );
 }
