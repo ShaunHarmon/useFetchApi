@@ -9,7 +9,7 @@ const CardList: FC<CardListProps> = (props) =>{
     const {list} = props
     return <>
         {list.map && list.map((item: Post)=>{
-            return <Card  post={item}/>
+            return <Card key={item.id}  post={item}/>
         })}
     </>
 }

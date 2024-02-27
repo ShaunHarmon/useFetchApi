@@ -1,13 +1,12 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import './App.css';
-import { useFetchApi } from './hooks/useFetchApi/useFetchApi';
 import { CardList } from './components/CardList/CardList';
-import { Post } from './components/Card/Card';
+import { PostApi } from './api/Posts/PostAPi';
 
 function App() {
+  const {data, isLoading, error} = PostApi().GET()
 
-  const {data, isLoading, error, abortController} = useFetchApi<Post[]>({url: 'https://jsonplaceholder.typicode.com/posts'})
-
+ 
   if(error){
     console.warn(error)
   }

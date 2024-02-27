@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import { BASE_URL } from "../../api/Posts/PostAPi"
 
 export type UseFetchProps = {
     url: string,
@@ -21,7 +22,7 @@ const useFetchApi = <T>(props: UseFetchProps)=>{
     useEffect(()=>{
         try {
             setIsLoading(true)
-            fetch(url, {...defaultFetchOptions, signal: abortController.signal, ...overrideFetchOptions})
+            fetch(`${BASE_URL}${url}`, {...defaultFetchOptions, signal: abortController.signal, ...overrideFetchOptions})
             .then(res => res.json())
             .then(data => setData(data))
         } catch (error) {
